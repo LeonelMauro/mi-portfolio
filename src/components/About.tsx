@@ -1,15 +1,15 @@
 import { Box, Typography } from "@mui/material";
 import {
-  sectionStyles,
   sectionTitleStyles,
   contentContainerStyles,
+  fullSectionStyles,
 } from "../styles/sectionStyles";
 
 function About (){
     return(
         <Box
         id='About'
-       sx={sectionStyles} >
+       sx={fullSectionStyles} >
 					<Box>
 						
 					<Typography
@@ -60,7 +60,7 @@ function About (){
                   xs: "center",
                   md: "justify",
                 },
-                mb: 2,
+                mb: 3,
               }}
             >
               Soy Técnico Superior en Desarrollo de Software especializado en

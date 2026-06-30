@@ -16,7 +16,7 @@ import {
   SiPostman,
 } from "react-icons/si";
 import { DiMsqlServer } from "react-icons/di";
-import { sectionStyles, sectionTitleStyles } from "../styles/sectionStyles";
+import {  sectionTitleStyles, skillsSectionStyles } from "../styles/sectionStyles";
 
 function Skills (){
   const frontend = [
@@ -45,7 +45,7 @@ function Skills (){
   ];
 
     return(
-        <Box id="Skills" sx={sectionStyles}>
+        <Box id="Skills" sx={skillsSectionStyles}>
           <Box
           >
           <Typography

@@ -3,6 +3,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
 import foto from '../assets/fot-perfil.png'
+import { styleIcon } from "../styles/sectionStyles";
 
 function Hero () {
 
@@ -99,42 +100,15 @@ function Hero () {
         }}
         >
         <GitHubIcon
-          sx={{
-            fontSize: 30,//Cambia el tamaño del icono.
-            cursor: 'pointer',
-            color: '#38BDF8',
-            transition: "0.3s",
-            "&:hover": {
-              transform: "translateY(-3px)",
-              color: "#6a8996ff",
-            },
-          }}
+          sx={styleIcon}
         />
 
         <LinkedInIcon
-          sx={{
-            fontSize: 30,//Cambia el tamaño del icono.
-            cursor: 'pointer',
-            transition: "0.3s",
-            "&:hover": {
-              transform: "translateY(-3px)",
-              color: "#6a8996ff",
-            },
-            color: '#38BDF8',
-          }}
+          sx={styleIcon}
         />
 
         <EmailIcon
-          sx={{
-            fontSize: 30,//Cambia el tamaño del icono.
-            cursor: 'pointer',//Hace que aparezca la manito al pasar el mouse:
-            color: '#38BDF8',
-            transition: "0.3s",
-            "&:hover": {
-              transform: "translateY(-3px)",
-              color: "#6a8996ff",
-            },
-          }}
+          sx={styleIcon}
         />
       </Box>
       </Box>
@@ -159,7 +133,7 @@ function Hero () {
       >
       </Box>
         <Typography>
-          📍 Maipú, Mendoza · AR
+          📍 Mendoza · Argentina
         </Typography>
       </Box>
     </Box>

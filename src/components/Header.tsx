@@ -1,10 +1,10 @@
 import {
   AppBar,
   Toolbar,
-  Typography,
   Button,
   Box,
 } from "@mui/material";
+import { selectButton } from "../styles/sectionStyles";
 
 function Header() {
   return (
@@ -12,6 +12,8 @@ function Header() {
       position="fixed"
       elevation={0}
       sx={{
+        display:'flex',
+        alignItems:'center',
         backgroundColor: "rgba(10,10,10,0.75)",
         backdropFilter: "blur(10px)",
         borderBottom: "1px solid rgba(255,255,255,0.08)",
@@ -25,112 +27,44 @@ function Header() {
           justifyContent: "space-between",
         }}
       >
-        <Typography
-          sx={{
-            fontSize: "12px",
-            fontWeight: 400,
-            letterSpacing: 1,
-          }}
-          >
-          <Box
-            component="span"
-            sx={{
-              color: "#38BDF8", // celeste
-              fontSize: "12px",
-              mr: 0.5,
-            }}
-          >
-            $
-          </Box>
-
-          LEONEL.DEV
-        </Typography>
+        
         <Box
-  sx={{
-    display: {
-      xs: "none",
-      md: "flex",
-    },
-    gap: 1,
-    
-  }}
->
-  <Button
-    color="inherit"
-    sx={{
-      fontSize: "12px",
-      color: "#38BDF8", // celeste
-      minWidth: "auto",
-      px: 1.5,
-      py: 0.5,
-      textTransform: "none",
-      transition: "0.3s",
-            "&:hover": {
-              transform: "translateY(-3px)",
-              color: "#6a8996ff",
+          sx={{
+            display: {
+              xs: "none",
+              md: "flex",
             },
-    }}
-  >
-    INICIO
-  </Button>
+            gap: 1,
+            
+          }}
+        >
+          <Button
+            sx={selectButton}
+          >
+            INICIO
+          </Button>
 
-  <Button
-    color="inherit"
-    sx={{
-      fontSize: "12px",
-      color: "#38BDF8", // celeste
-      minWidth: "auto",
-      px: 1.5,
-      py: 0.5,
-      textTransform: "none",
-      transition: "0.3s",
-            "&:hover": {
-              transform: "translateY(-3px)",
-              color: "#6a8996ff",
-            },
-    }}
-  >
-    SOBRE MI
-  </Button>
+          <Button
+            color="inherit"
+            sx={selectButton}
+          >
+            SOBRE MI
+          </Button>
 
-  <Button
-    color="inherit"
-    sx={{
-      fontSize: "12px",
-      minWidth: "auto",
-      color: "#38BDF8", // celeste
-      px: 1.5,
-      py: 0.5,
-      textTransform: "none",
-      transition: "0.3s",
-            "&:hover": {
-              transform: "translateY(-3px)",
-              color: "#6a8996ff",
-            },
-    }}
-  >
-    PROYECTOS
-  </Button>
+          <Button
+            color="inherit"
+            sx={selectButton}
+          >
+            PROYECTOS
+          </Button>
 
-  <Button
-    color="inherit"
-    sx={{
-      fontSize: "12px",
-      color: "#38BDF8", // celeste
-      minWidth: "auto",
-      px: 1.5,
-      py: 0.5,
-      textTransform: "none",
-      transition: "0.3s",
-            "&:hover": {
-              transform: "translateY(-3px)",
-              color: "#6a8996ff",
-            },
-    }}
-  >
-    CONTACTO
-  </Button>
-</Box>
+          <Button
+            color="inherit"
+            sx={selectButton}
+          >
+            CONTACTO
+          </Button>
+        </Box>
       </Toolbar>
     </AppBar>
   );
