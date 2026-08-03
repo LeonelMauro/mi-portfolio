@@ -45,7 +45,7 @@ function Skills (){
   ];
 
     return(
-        <Box id="Skills" sx={skillsSectionStyles}>
+        <Box id="skills" sx={skillsSectionStyles}>
           <Box
           >
           <Typography
@@ -73,7 +73,7 @@ function Skills (){
                 border:'1px solid rgba(255,255,255,.1)',//color del borde del card
                 borderRadius:'20px',//el borde de las esquinas
                 background:'rgba(255,255,255,.03)',//color dentro del card
-                 backdropFilter:'blur(10px)'
+                backdropFilter:'blur(10px)'
               }}
               >
                 <Typography
@@ -81,10 +81,10 @@ function Skills (){
                 sx={{
                 color:'#fff',
                 mb:3,
-                 fontWeight: 600,
-    textAlign: "center",
-    borderBottom: "1px solid rgba(255,255,255,.1)",
-    pb: 1,
+                fontWeight: 600,
+                textAlign: "center",
+                borderBottom: "1px solid rgba(255,255,255,.1)",
+                pb: 1,
                 }}
                 >
                     Frontend
@@ -141,7 +141,10 @@ function Skills (){
                   variant="h5"
                 sx={{
                 color:'#fff',
-                mb:3
+                mb:3,
+                textAlign: "center",
+                borderBottom: "1px solid rgba(255,255,255,.1)",
+                pb: 1,
                 }}
                 >
                     Backend
@@ -199,7 +202,10 @@ function Skills (){
                   variant="h5"
                 sx={{
                 color:'#fff',
-                mb:3
+                mb:3,
+                textAlign: "center",
+                borderBottom: "1px solid rgba(255,255,255,.1)",
+                pb: 1,
                 }}
                 >
                     Base de datos
@@ -255,7 +261,10 @@ function Skills (){
                   variant="h5"
                 sx={{
                 color:'#fff',
-                mb:3
+                mb:3,
+                textAlign: "center",
+                borderBottom: "1px solid rgba(255,255,255,.1)",
+                pb: 1,
                 }}
                 >
                     Herramientas

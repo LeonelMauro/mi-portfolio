@@ -8,7 +8,7 @@ import {
 function About (){
     return(
         <Box
-        id='About'
+        id='about'
        sx={fullSectionStyles} >
 					<Box>
 						

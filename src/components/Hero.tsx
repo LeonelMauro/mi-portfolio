@@ -8,7 +8,7 @@ import { styleIcon } from "../styles/sectionStyles";
 function Hero () {
 
   return(
-    <Box sx={{
+    <Box id="inicio" className="portfolio-hero" sx={{
       minHeight: '100vh',//abarca todo el tamaño de la pantalla
       display: 'flex',//indica que sea flexible y se mueva los componentes
       flexDirection:{//que indica la dirección.
@@ -53,7 +53,7 @@ function Hero () {
             xs:'2.5rem',
             md:'4rem'
           },
-          whiteSpace: "nowrap",//El texto no tiene salto de linea
+          whiteSpace: { xs: "normal", md: "nowrap" },
         }}
         >
           Leonel Carcereri
@@ -112,7 +112,7 @@ function Hero () {
         />
       </Box>
       </Box>
-      <Box>
+      <Box className="hero-photo-block">
 
       <Box
       component='img'//Le dice a Material UI:Le dice a Material UI: html <img />
