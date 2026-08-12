@@ -1,18 +1,23 @@
 import { Box,  Typography ,Tooltip,} from "@mui/material"
 import { sectionTitleStyles, skillsSectionStyles } from "../styles/sectionStyles"
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useState } from "react";
+import { FolderOpen } from "@mui/icons-material";
 
-import { Pagination, Autoplay } from "swiper/modules";
+import { Pagination, Autoplay,  } from "swiper/modules";
 import { projects } from "../data/projects";
 import { SiGithub } from "react-icons/si";
 import LaunchRoundedIcon from "@mui/icons-material/LaunchRounded";
+import ProjectImageDialog from "./ProjectImageDialog";
 
 
 function Projects(){
 
+  const [selectedSection, setSelectedSection] = useState<
+    Record<number, string | null>
+  >({});
 
   return(
-
   <Box
   id = 'projects'
   sx={skillsSectionStyles}
@@ -69,31 +74,117 @@ function Projects(){
             },
           }}
         >
-        <Swiper
-          modules={[Pagination, Autoplay]}
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 3000 }}
-          loop
-          style={{
-            width: "100%",
-            height: 250,
+       <Swiper
+  modules={[Pagination, Autoplay]}
+  pagination={{ clickable: true }}
+  autoplay={{ delay: 3000 }}
+  loop={project.images.length > 1}
+  style={{
+    width: "100%",
+    height: 250,
+  }}
+>
+  {project.images.map((img, index) => (
+    <SwiperSlide key={index}>
+      <Box
+        sx={{
+          width: "100%",
+          height: 220,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          overflow: "hidden",
+        }}
+      >
+        <Box
+          component="img"
+          src={img}
+          alt={project.name}
+          sx={{
+            maxWidth: "100%",
+            maxHeight: "100%",
+            width: "auto",
+            height: "auto",
+            objectFit: "contain",
+            borderRadius: 2,
+            transition: "transform .3s",
+            cursor: "pointer",
+
+            "&:hover": {
+              transform: "scale(1.05)",
+            },
+          }}
+        />
+      </Box>
+    </SwiperSlide>
+  ))}
+</Swiper>
+        {project.sections && (
+  <Box
+    sx={{
+      display: "flex",
+      justifyContent: "center",
+      gap: 1,
+      mt: 1,
+      flexWrap: "wrap",
+    }}
+  >
+    {Object.keys(project.sections).map((section) => (
+      <Box
+        key={section}
+        onClick={() =>
+          setSelectedSection((prev) => ({
+            ...prev,
+            [project.id]: section,
+          }))
+        }
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: 0.5,
+          px: 1.2,
+          py: 0.6,
+          borderRadius: 1.5,
+          cursor: "pointer",
+          color: "#BDBDBD",
+          border: "1px solid rgba(255,255,255,.15)",
+          background: "rgba(255,255,255,.03)",
+          transition: ".25s",
+
+          "&:hover": {
+            color: project.color,
+            borderColor: project.color,
+            background: `${project.color}15`,
+            transform: "translateY(-2px)",
+          },
+        }}
+      >
+        <FolderOpen sx={{ fontSize: 16 }} />
+
+        <Typography
+          sx={{
+            fontSize: ".75rem",
+            fontWeight: 600,
           }}
         >
-          {project.images.map((img, index) => (
-            <SwiperSlide key={index}>
-              <Box
-                component="img"
-                src={img}
-                sx={{
-                  width: "100%",
-                  height: 220,
-                  objectFit: "contain",
-                  borderRadius: 2,
-                }}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+          {section}
+        </Typography>
+      </Box>
+    ))}
+  </Box>
+)}
+{project.sections && selectedSection[project.id] && (
+  <ProjectImageDialog
+    open={Boolean(selectedSection[project.id])}
+    onClose={() =>
+      setSelectedSection((prev) => ({
+        ...prev,
+        [project.id]: null,
+      }))
+    }
+    images={project.sections[selectedSection[project.id]]}
+  />
+)}
           {/*Contenido */}
           <Box
           sx={{

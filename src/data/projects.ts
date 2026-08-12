@@ -6,15 +6,37 @@ import {
   SiPostgresql,
   SiTypeorm,
 } from "react-icons/si";
-
-import CEM1 from "../assets/CEM/CEm.png";
-import DLFlogo from "../assets/DLF/LogoNegocio.jpeg";
-import scroll from "../assets/BESTIX/scroll.png";
-import BestixLogo from "../assets/BESTIX/Bestix_logo.svg";
+//SKOL
 import SkolLogo from "../assets/SKOL/SkolLogo.svg";
-import CEMlogo from "../assets/CEM/CEM_logo.svg";
+import ScrollSkol from "../assets/SKOL/ScrollSkol.png";
+  //Admin
+import PanelAdmin from "../assets/SKOL/admin/PanelAdmin.png";
+import DisposicionygestiondeBarbers from "../assets/SKOL/admin/DisposicionygestiondeBarbers.png";
+import gestionDeUsuarios from "../assets/SKOL/admin/gestionDeUsuarios.png";
+import GestionDeLocales from "../assets/SKOL/admin/GestionDeLocales.png";
+import adminReportes_baber from "../assets/SKOL/admin/adminReportes_baber.png";
+import ServiciosGestion from "../assets/SKOL/admin/ServiciosGestion.png";
+  //barber
+import barberDash from "../assets/SKOL/barber/barberDash.png";
+import disponibilidadBarber from "../assets/SKOL/barber/disponibilidadBarber.png";
+import historialbarber from "../assets/SKOL/barber/historialbarber.png";
+ //client
+
+
+ServiciosGestion
+//VANTEX
 import Vantex1 from "../assets/VANTEX/Logo.png";
 import Vantex2 from "../assets/VANTEX/Captura de pantalla 2026-05-21 - 18.14.18-fullpage.png";
+
+//CEM
+import CEM1 from "../assets/CEM/CEm.png";
+
+//BESTIX
+import scroll from "../assets/BESTIX/scroll.png";
+import BestixLogo from "../assets/BESTIX/Bestix_logo.svg";
+//DLF
+import DLFlogo from "../assets/DLF/LogoNegocio.jpeg";
+import CEMlogo from "../assets/CEM/CEM_logo.svg";
 
 const technologies = {
   react: { icon: SiReact, name: "React" },
@@ -33,7 +55,54 @@ export const projects = [
     description:"Sistema de gestión para barberías con turnos online, métricas y administración de sucursales.",
     technologies: [technologies.react,technologies.nest,technologies.postgres,technologies.typeorm,technologies.typescript,technologies.mui,],
     color: "#38BDF8",
-    images: [CEM1],
+    images: [ScrollSkol],
+    sections: {
+    Admin: [
+      {
+        image: PanelAdmin,
+        function: "Panel administrativo",
+      },
+      {
+        image: DisposicionygestiondeBarbers,
+        function: "Gestión de barbers",
+      },
+      {
+        image: gestionDeUsuarios,
+        function: "Gestión de usuarios",
+      },
+      {
+        image: GestionDeLocales,
+        function: "Gestión de locales",
+      },
+      {
+        image: adminReportes_baber,
+        function: "Reportes",
+      },
+      {
+        image: ServiciosGestion,
+        function: "Gestión de servicios",
+      },
+    ],
+
+    Barber: [
+      {
+        image: barberDash,
+        function: "Panel de barber",
+      },
+      {
+        image: disponibilidadBarber,
+        function: "Gestión de disponibilidad",
+      },
+      {
+        image: historialbarber,
+        function: "Historial",
+      },
+    ],
+
+    Cliente: [
+      // Acá agregamos las imágenes del cliente
+    ],
+  },
     github: "https://github.com/LeonelMauro/skol",
     demo: "",
   },
