@@ -6,43 +6,23 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-<style>
-{`
-  .project-image-swiper .swiper-button-prev,
-  .project-image-swiper .swiper-button-next {
-    width: 32px;
-    height: 32px;
-  }
 
-  .project-image-swiper .swiper-button-prev::after,
-  .project-image-swiper .swiper-button-next::after {
-    font-size: 18px;
-    font-weight: 600;
-  }
-
-  @media (max-width: 599px) {
-    .project-image-swiper .swiper-button-prev,
-    .project-image-swiper .swiper-button-next {
-      display: none;
-    }
-  }
-`}
-</style>
 interface ProjectImage {
   image: string;
   function: string;
 }
-
 interface ProjectImageDialogProps {
   open: boolean;
   onClose: () => void;
   images: ProjectImage[];
+  color: string;
 }
 
 function ProjectImageDialog({
   open,
   onClose,
   images,
+  color,
 }: ProjectImageDialogProps) {
   return (
     <Dialog
@@ -72,32 +52,68 @@ function ProjectImageDialog({
       }}
     >
       <DialogContent
-      sx={{
-        p: 0,
-        overflow: "hidden",
-        background: "transparent",
+  sx={{
+    p: 0,
+    overflow: "hidden",
+    background: "transparent",
 
-        "& .project-image-swiper .swiper-button-prev, & .project-image-swiper .swiper-button-next":
-          {
-            width: 32,
-            height: 32,
-          },
+    // Flechas
+    "& .project-image-swiper .swiper-button-prev, & .project-image-swiper .swiper-button-next":
+      {
+        width: 38,
+        height: 38,
 
-        "& .project-image-swiper .swiper-button-prev::after, & .project-image-swiper .swiper-button-next::after":
-          {
-            fontSize: "18px",
-            fontWeight: 600,
-          },
+        background: `${color}DD`,
 
-        // Ocultar flechas en celulares
-        "@media (max-width: 599px)": {
-          "& .project-image-swiper .swiper-button-prev, & .project-image-swiper .swiper-button-next":
-            {
-              display: "none",
-            },
+        border: "1px solid rgba(255, 255, 255, 0.3)",
+
+        borderRadius: "10px",
+
+        color: "#fff",
+
+        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.35)",
+
+        transition: "all 0.25s ease",
+
+        "&:hover": {
+          background: color,
+          transform: "scale(1.08)",
         },
-      }}
-    >
+      },
+
+    // Icono de la flecha
+    "& .project-image-swiper .swiper-button-prev::after, & .project-image-swiper .swiper-button-next::after":
+      {
+        fontSize: "16px",
+        fontWeight: 700,
+      },
+
+    // Ocultar flechas en celulares
+    "@media (max-width: 599px)": {
+      "& .project-image-swiper .swiper-button-prev, & .project-image-swiper .swiper-button-next":
+        {
+          display: "none",
+        },
+    },
+
+    // Puntos
+    "& .swiper-pagination": {
+      bottom: "5px",
+    },
+
+    "@media (min-width: 600px)": {
+      "& .swiper-pagination": {
+        bottom: "10px",
+      },
+    },
+
+    "@media (min-width: 900px)": {
+      "& .swiper-pagination": {
+        bottom: "20px",
+      },
+    },
+  }}
+>
         {images.length === 0 ? (
           <Typography
             sx={{

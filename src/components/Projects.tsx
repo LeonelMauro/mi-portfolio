@@ -175,15 +175,16 @@ function Projects(){
 )}
 {project.sections && selectedSection[project.id] && (
   <ProjectImageDialog
-    open={Boolean(selectedSection[project.id])}
-    onClose={() =>
-      setSelectedSection((prev) => ({
-        ...prev,
-        [project.id]: null,
-      }))
-    }
-    images={project.sections[selectedSection[project.id]]}
-  />
+  open={Boolean(selectedSection[project.id])}
+  onClose={() =>
+    setSelectedSection((prev) => ({
+      ...prev,
+      [project.id]: null,
+    }))
+  }
+  images={project.sections[selectedSection[project.id]]}
+  color={project.color}
+/>
 )}
           {/*Contenido */}
           <Box
