@@ -11,10 +11,12 @@ import LaunchRoundedIcon from "@mui/icons-material/LaunchRounded";
 import ProjectImageDialog from "./ProjectImageDialog";
 
 
+type SectionName = keyof (typeof projects)[0]["sections"];
+
 function Projects(){
 
   const [selectedSection, setSelectedSection] = useState<
-    Record<number, string | null>
+    Record<number, SectionName | null>
   >({});
 
   return(
@@ -50,30 +52,46 @@ function Projects(){
         gap:4,
         width:'100%',
         maxWidth:'1200px',
-        mx:'auto'
+        mx:'auto',
+        px: {
+      xs: 2,
+      md: 0,
+    },
+    boxSizing: "border-box",
         }}
         >
       {projects.map((project) => (
         <Box
-        key = {project.id}
-        sx={{
-            display: "flex",
-            flexDirection: "column",
-            p: 3,
-            borderRadius: 4,
-            background: "rgba(255,255,255,.03)",
-            border: "1px solid rgba(255,255,255,.1)",
-            borderLeft: `4px solid ${project.color}`,
-            backdropFilter: "blur(10px)",
-            transition: ".35s",
-
-            "&:hover": {
-              transform: "translateY(-8px)",
-              borderColor: project.color,
-              boxShadow: `0 18px 35px ${project.color}30`,
-            },
-          }}
-        >
+  key={project.id}
+  sx={{
+    display: "flex",
+    flexDirection: "column",
+    width: "100%", // Asegura que ocupe el ancho del grid/contenedor
+    boxSizing: "border-box", // Incluye el padding dentro del ancho disponible
+    mx: {
+      xs: "auto",
+      sm: 0,
+    },
+     maxWidth: {
+    xs: "100%",
+    sm: 448, // Conserva el tamaño exterior original (400px + padding)
+  }, // O el ancho máximo que desees para tus tarjetas
+    minWidth: 0,   // CRUCIAL: Previene que Swiper desborde el contenedor Flexbox
+    p: 3,
+    borderRadius: 4,
+    background: "rgba(255,255,255,.03)",
+    border: "1px solid rgba(255,255,255,.1)",
+    borderLeft: `4px solid ${project.color}`,
+    backdropFilter: "blur(10px)",
+    transition: ".35s",
+    overflow: "hidden", // Previene cualquier desbordamiento visual
+    "&:hover": {
+      transform: "translateY(-8px)",
+      borderColor: project.color,
+      boxShadow: `0 18px 35px ${project.color}30`,
+    },
+  }}
+>
        <Swiper
   modules={[Pagination, Autoplay]}
   pagination={{ clickable: true }}
@@ -135,7 +153,7 @@ function Projects(){
         onClick={() =>
           setSelectedSection((prev) => ({
             ...prev,
-            [project.id]: section,
+            [project.id]: section as SectionName,
           }))
         }
         sx={{
@@ -182,7 +200,7 @@ function Projects(){
       [project.id]: null,
     }))
   }
-  images={project.sections[selectedSection[project.id]]}
+  images={project.sections[selectedSection[project.id]!]}
   color={project.color}
 />
 )}

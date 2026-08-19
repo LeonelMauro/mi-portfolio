@@ -9,6 +9,9 @@ import {
 //SKOL
 import SkolLogo from "../assets/SKOL/SkolLogo.svg";
 import ScrollSkol from "../assets/SKOL/ScrollSkol.png";
+import perfilSkol from "../assets/SKOL/perfil.png";
+import loginSkol from "../assets/SKOL/login.png";
+
   //Admin
 import PanelAdmin from "../assets/SKOL/admin/PanelAdmin.png";
 import DisposicionygestiondeBarbers from "../assets/SKOL/admin/DisposicionygestiondeBarbers.png";
@@ -21,11 +24,18 @@ import barberDash from "../assets/SKOL/barber/barberDash.png";
 import disponibilidadBarber from "../assets/SKOL/barber/disponibilidadBarber.png";
 import historialbarber from "../assets/SKOL/barber/historialbarber.png";
  //client
+import dashboardclient from '../assets/SKOL/client/dashboardclient.png';
+import elegirSucursal from '../assets/SKOL/client/elegirSucursal.png';
+import selectBarber from '../assets/SKOL/client/selectBarber.png';
+import elegirServer from '../assets/SKOL/client/elegirServer.png';
+import Fechayhorario from '../assets/SKOL/client/Fechayhorario.png';
+import confirmar from '../assets/SKOL/client/confirmar.png';
 
-
-ServiciosGestion
 //VANTEX
 import Vantex1 from "../assets/VANTEX/Logo.png";
+import homeVantex from "../assets/VANTEX/homeVantex.png";
+import contactoVantex from "../assets/VANTEX/contactoVantex.png";
+import ServiciosVantex from "../assets/VANTEX/ServiciosVantex.png";
 import Vantex2 from "../assets/VANTEX/Captura de pantalla 2026-05-21 - 18.14.18-fullpage.png";
 
 //CEM
@@ -34,6 +44,8 @@ import CEM1 from "../assets/CEM/CEm.png";
 //BESTIX
 import scroll from "../assets/BESTIX/scroll.png";
 import BestixLogo from "../assets/BESTIX/Bestix_logo.svg";
+import contactBestix from "../assets/BESTIX/contactBestix.png";
+import homeBestix from "../assets/BESTIX/homeBestix.png";
 //DLF
 import DLFlogo from "../assets/DLF/LogoNegocio.jpeg";
 import CEMlogo from "../assets/CEM/CEM_logo.svg";
@@ -55,7 +67,7 @@ export const projects = [
     description:"Sistema de gestión para barberías con turnos online, métricas y administración de sucursales.",
     technologies: [technologies.react,technologies.nest,technologies.postgres,technologies.typeorm,technologies.typescript,technologies.mui,],
     color: "#38BDF8",
-    images: [ScrollSkol],
+    images: [ScrollSkol,PanelAdmin,barberDash,perfilSkol,loginSkol],
     sections: {
     Admin: [
       {
@@ -100,7 +112,30 @@ export const projects = [
     ],
 
     Cliente: [
-      // Acá agregamos las imágenes del cliente
+      {
+        image: dashboardclient,
+        function: "Dashboard del cliente",
+      },
+      {
+        image: elegirSucursal,
+        function: "Elegir sucursal",
+      },
+      {
+        image: selectBarber,
+        function: "Seleccionar barbero",
+      },
+      {
+        image: elegirServer,
+        function: "Seleccionar servicio",
+      },
+      {
+        image: Fechayhorario,
+        function: "Elegir fecha y horario",
+      },
+      {
+        image: confirmar,
+        function: "Confirmar reserva",
+      },
     ],
   },
     github: "https://github.com/LeonelMauro/skol",
@@ -113,7 +148,7 @@ export const projects = [
      description:"Sitio web institucional para empresa de servicios tecnicos industriales.",
      technologies: [technologies.react,technologies.mui,],
      color: "#8B5CF6",
-     images:[Vantex2],
+     images:[Vantex2,ServiciosVantex,homeVantex,contactoVantex],
      github: "",
 
      demo: "https://vantexindustrial.com",
@@ -125,7 +160,7 @@ export const projects = [
      description:"Sitio para fabricante de uniformes y ropa corporativa. Servicios:estampado y bordado profesional para empresas.",
      technologies: [technologies.react,technologies.mui,],
      color: "#EC4899",
-     images:[scroll] ,
+     images:[scroll,homeBestix,contactBestix] ,
      github: "",
 
      demo: "https://bestixa.netlify.app",
