@@ -1,11 +1,15 @@
 import { Box, Dialog, DialogContent, Typography } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
-
+import { IconButton } from "@mui/material";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
+import {
+  TransformWrapper,
+  TransformComponent,
+} from "react-zoom-pan-pinch";
 
 interface ProjectImage {
   image: string;
@@ -33,7 +37,7 @@ function ProjectImageDialog({
       slotProps={{
         backdrop: {
           sx: {
-            backgroundColor: "rgba(220, 220, 220, 0.45)",
+            backgroundColor: "rgba(146, 146, 146, 0.19)",
             backdropFilter: "blur(12px)",
           },
         },
@@ -62,6 +66,7 @@ function ProjectImageDialog({
       {
         width: 38,
         height: 38,
+        position: "relative",
 
         background: `${color}DD`,
 
@@ -114,6 +119,26 @@ function ProjectImageDialog({
     },
   }}
 >
+  <IconButton
+  onClick={onClose}
+  aria-label="Cerrar galería"
+  sx={{
+    position: "absolute",
+    top: 16,
+    right: 16,
+    zIndex: 10,
+    color: "#fff",
+    background: "rgba(0,0,0,.65)",
+    border: "1px solid rgba(255,255,255,.25)",
+
+    "&:hover": {
+      background: color,
+      transform: "scale(1.08)",
+    },
+  }}
+>
+  <CloseRoundedIcon />
+</IconButton>
         {images.length === 0 ? (
           <Typography
             sx={{
@@ -130,27 +155,51 @@ function ProjectImageDialog({
             className="project-image-swiper"
             pagination={{ clickable: true }}
             navigation
+            resistanceRatio={0}
+            touchStartPreventDefault={false}
             style={{
               width: "100%",
               height: "80vh",
             }}
           >
             {images.map((item, index) => (
-              <SwiperSlide key={index} onClick={onClose}>
-                <Box
-                  sx={{
+              <SwiperSlide key={index} >
+                <TransformWrapper
+                key={`${item.image}-${index}`}
+                initialScale={1}
+                minScale={1}
+                maxScale={4}
+                centerOnInit
+                limitToBounds
+                wheel={{
+                  step: 0.2,
+                }}
+                pinch={{
+                  step: 5,
+                }}
+                doubleClick={{
+                  mode: "toggle",
+                  step: 1.5,
+                }}
+                panning={{
+                  disabled: false,
+                  velocityDisabled: true,
+                }}
+              >
+                <TransformComponent
+                  wrapperStyle={{
+                    width: "100%",
+                    height: "75vh",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                  contentStyle={{
                     width: "100%",
                     height: "100%",
                     display: "flex",
-                    flexDirection: "column",
                     alignItems: "center",
                     justifyContent: "center",
-                    px: {
-                      xs: 2,
-                      sm: 3,
-                      md: 4,
-                    },
-                    boxSizing: "border-box",
                   }}
                 >
                   <Box
@@ -172,25 +221,12 @@ function ProjectImageDialog({
                       height: "auto",
                       objectFit: "contain",
                       display: "block",
-                      transition: ".3s",
-
-                      "&:hover": {
-                        transform: "scale(1.02)",
-                      },
+                      userSelect: "none",
+                      WebkitUserDrag: "none",
                     }}
                   />
-
-                  <Typography
-                    sx={{
-                      color: "#fff",
-                      mt: 2,
-                      px: 2,
-                      textAlign: "center",
-                    }}
-                  >
-                    {item.function}
-                  </Typography>
-                </Box>
+                </TransformComponent>
+              </TransformWrapper>
               </SwiperSlide>
             ))}
           </Swiper>

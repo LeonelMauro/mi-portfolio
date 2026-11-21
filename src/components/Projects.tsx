@@ -14,11 +14,15 @@ import ProjectImageDialog from "./ProjectImageDialog";
 type SectionName = keyof (typeof projects)[0]["sections"];
 
 function Projects(){
+  
 
   const [selectedSection, setSelectedSection] = useState<
     Record<number, SectionName | null>
   >({});
-
+  const [selectedProject, setSelectedProject] = useState<{
+  images: { image: string; function: string }[];
+  color: string;
+} | null>(null);
   return(
   <Box
   id = 'projects'
@@ -115,24 +119,35 @@ function Projects(){
         }}
       >
         <Box
-          component="img"
-          src={img}
-          alt={project.name}
-          sx={{
-            maxWidth: "100%",
-            maxHeight: "100%",
-            width: "auto",
-            height: "auto",
-            objectFit: "contain",
-            borderRadius: 2,
-            transition: "transform .3s",
-            cursor: "pointer",
+  component="img"
+  src={img}
+  alt={`${project.name} - imagen ${index + 1}`}
+  onClick={() =>
+  setSelectedProject({
+    images: project.images.map((image, imageIndex) => ({
+      image,
+      function: `${project.name} - Imagen ${imageIndex + 1}`,
+    })),
+    color: project.color,
+  })
+}
+  sx={{
+    maxWidth: "100%",
+    maxHeight: "100%",
+    width: "auto",
+    height: "auto",
+    objectFit: "contain",
+    borderRadius: 2,
+    cursor: "zoom-in",
+    transition: "transform .35s ease",
 
-            "&:hover": {
-              transform: "scale(1.05)",
-            },
-          }}
-        />
+    "@media (hover: hover)": {
+      "&:hover": {
+        transform: "scale(1.08)",
+      },
+    },
+  }}
+/>
       </Box>
     </SwiperSlide>
   ))}
@@ -147,6 +162,7 @@ function Projects(){
       flexWrap: "wrap",
     }}
   >
+  
     {Object.keys(project.sections).map((section) => (
       <Box
         key={section}
@@ -189,6 +205,7 @@ function Projects(){
         </Typography>
       </Box>
     ))}
+    
   </Box>
 )}
 {project.sections && selectedSection[project.id] && (
@@ -370,9 +387,20 @@ function Projects(){
               
             </Box>
           </Box>
-      ))}
+          ))}
 
     </Box>
+
+    {/* Dialog para las imágenes principales de los proyectos */}
+    {selectedProject && (
+      <ProjectImageDialog
+        open={Boolean(selectedProject)}
+        onClose={() => setSelectedProject(null)}
+        images={selectedProject.images}
+        color={selectedProject.color}
+      />
+    )}
+
   </Box>
   )
 
