@@ -10,11 +10,14 @@ import {
   TransformWrapper,
   TransformComponent,
 } from "react-zoom-pan-pinch";
+import { useState } from "react";
+import type { Swiper as SwiperType } from "swiper";
 
 interface ProjectImage {
   image: string;
   function: string;
 }
+
 interface ProjectImageDialogProps {
   open: boolean;
   onClose: () => void;
@@ -28,6 +31,10 @@ function ProjectImageDialog({
   images,
   color,
 }: ProjectImageDialogProps) {
+  const [swiperInstance, setSwiperInstance] =
+  useState<SwiperType | null>(null);
+
+const [isZoomed, setIsZoomed] = useState(false);
   return (
     <Dialog
       open={open}
@@ -155,37 +162,37 @@ function ProjectImageDialog({
             className="project-image-swiper"
             pagination={{ clickable: true }}
             navigation
+            onSwiper={setSwiperInstance}
+            allowTouchMove={!isZoomed}
             resistanceRatio={0}
-            touchStartPreventDefault={false}
             style={{
               width: "100%",
               height: "80vh",
             }}
-          >
+            >
             {images.map((item, index) => (
               <SwiperSlide key={index} >
                 <TransformWrapper
-                key={`${item.image}-${index}`}
-                initialScale={1}
-                minScale={1}
-                maxScale={4}
-                centerOnInit
-                limitToBounds
-                wheel={{
-                  step: 0.2,
-                }}
-                pinch={{
-                  step: 5,
-                }}
-                doubleClick={{
-                  mode: "toggle",
-                  step: 1.5,
-                }}
-                panning={{
-                  disabled: false,
-                  velocityDisabled: true,
-                }}
-              >
+  key={`${item.image}-${index}`}
+  initialScale={1}
+  minScale={1}
+  maxScale={4}
+  centerOnInit
+  limitToBounds
+  wheel={{ step: 0.2 }}
+  pinch={{ step: 5 }}
+  doubleClick={{ mode: "toggle", step: 1.5 }}
+  panning={{ disabled: !isZoomed }}
+  onTransform={(_, state) => {
+    const zoomActive = state.scale > 1.01;
+
+    setIsZoomed(zoomActive);
+
+    if (swiperInstance && !swiperInstance.destroyed) {
+      swiperInstance.allowTouchMove = !zoomActive;
+    }
+  }}
+>
                 <TransformComponent
                   wrapperStyle={{
                     width: "100%",
